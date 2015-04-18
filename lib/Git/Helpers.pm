@@ -40,9 +40,9 @@ sub checkout_root {
 =head2 checkout_root( $dir )
 
 Gives you the root level of the git directory which you are currently in.
-Optionally accepts a directory param.  If you provide the directory parameter,
-C<checkout_root> will temporarily C<chdir> to this directory and find the top
-level of the repository.
+Optionally accepts a directory parameter.  If you provide the directory
+parameter, C<checkout_root> will temporarily C<chdir> to this directory and
+find the top level of the repository.
 
 This method will throw an exception if it cannot find a git repository at the
 directory provided.
