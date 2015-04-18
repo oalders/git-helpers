@@ -28,6 +28,8 @@ sub checkout_root {
 
 1;
 
+#ABSTRACT: Shortcuts for common Git commands
+
 =pod
 
 =head1 SYNOPSIS

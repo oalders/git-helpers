@@ -1,0 +1,28 @@
+NAME
+    Git::Helpers - Shortcuts for common Git commands
+
+VERSION
+    version 0.000001
+
+SYNOPSIS
+        use Git::Helpers qw( checkout_root );
+        my $root = checkout_root();
+
+  checkout_root( $dir )
+    Gives you the root level of the git directory which you are currently
+    in. Optionally accepts a directory param. If you provide the directory
+    parameter, "checkout_root" will temporarily "chdir" to this directory
+    and find the top level of the repository.
+
+    This method will throw an exception if it cannot find a git repository
+    at the directory provided.
+
+AUTHOR
+    Olaf Alders <olaf@wundercounter.com>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2015 by Olaf Alders.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+
