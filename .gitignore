@@ -1,0 +1,4 @@
+.build
+/Git-Helpers*
+*.swp
+.tidyall.d
