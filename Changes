@@ -1,6 +1,8 @@
 Revision history for Git-Helpers
 
 {{$NEXT}}
+
+0.000002  2015-04-19 09:29:34+02:00 Europe/Berlin
     - Requires the (currently) latest version of Test::Git
 
 0.000001  2015-04-18 15:00:31+02:00 Europe/Berlin
