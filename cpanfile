@@ -14,7 +14,7 @@ on 'build' => sub {
 on 'test' => sub {
   requires "File::Temp" => "0";
   requires "Test::Fatal" => "0";
-  requires "Test::Git" => "0";
+  requires "Test::Git" => "1.313";
   requires "Test::More" => "0";
   requires "perl" => "5.006";
 };

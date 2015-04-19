@@ -4,7 +4,7 @@ use warnings;
 use File::Temp qw( tempdir );
 use Git::Helpers qw( checkout_root );
 use Test::Fatal;
-use Test::Git;
+use Test::Git 1.313;
 use Test::More;
 
 my $r = test_repository();
