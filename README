@@ -2,7 +2,7 @@ NAME
     Git::Helpers - Shortcuts for common Git commands
 
 VERSION
-    version 0.000002
+    version 0.000003
 
 SYNOPSIS
         use Git::Helpers qw( checkout_root );

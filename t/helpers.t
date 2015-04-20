@@ -7,6 +7,8 @@ use Test::Fatal;
 use Test::Git 1.313;
 use Test::More;
 
+has_git();
+
 my $r = test_repository();
 
 {

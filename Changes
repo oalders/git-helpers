@@ -1,6 +1,7 @@
 Revision history for Git-Helpers
 
 {{$NEXT}}
+    - Fixes use of Test::Git
 
 0.000002  2015-04-19 09:29:34+02:00 Europe/Berlin
     - Requires the (currently) latest version of Test::Git
