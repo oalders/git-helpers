@@ -5,9 +5,10 @@ use File::Temp qw( tempdir );
 use Git::Helpers qw( checkout_root );
 use Test::Fatal;
 use Test::Git 1.313;
+use Test::Requires::Git;
 use Test::More;
 
-has_git();
+test_requires_git();
 
 my $r = test_repository();
 
