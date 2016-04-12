@@ -15,8 +15,8 @@ on 'test' => sub {
   requires "File::Temp" => "0";
   requires "Test::Fatal" => "0";
   requires "Test::Git" => "1.313";
-  requires "Test::Requires::Git" => "1.005";
   requires "Test::More" => "0";
+  requires "Test::Requires::Git" => "1.005";
   requires "perl" => "5.006";
 };
 

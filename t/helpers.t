@@ -5,8 +5,8 @@ use File::Temp qw( tempdir );
 use Git::Helpers qw( checkout_root );
 use Test::Fatal;
 use Test::Git 1.313;
-use Test::Requires::Git;
 use Test::More;
+use Test::Requires::Git 1.005;
 
 test_requires_git();
 
