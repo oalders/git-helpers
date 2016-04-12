@@ -1,6 +1,8 @@
 Revision history for Git-Helpers
 
 {{$NEXT}}
+
+0.000004  2016-04-11 21:57:50-04:00 America/Toronto
     - Replace has_git by test_requires_git (Philippe Bruhat (BooK))
 
 0.000003  2015-04-20 04:35:06+02:00 Europe/Berlin
