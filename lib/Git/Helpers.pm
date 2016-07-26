@@ -6,7 +6,7 @@ package Git::Helpers;
 use Carp qw( croak );
 use File::pushd qw( pushd );
 use Git::Sub;
-use Sub::Exporter -setup => { exports => ['checkout_root'] };
+use Sub::Exporter -setup => { exports => [ 'checkout_root', 'remote_url', ] };
 use Try::Tiny;
 
 sub checkout_root {
@@ -26,6 +26,11 @@ sub checkout_root {
     return $root;
 }
 
+sub remote_url {
+    my $remote = shift || 'origin';
+    return git::remote( 'get-url', $remote );
+}
+
 1;
 
 #ABSTRACT: Shortcuts for common Git commands
@@ -34,8 +39,10 @@ sub checkout_root {
 
 =head1 SYNOPSIS
 
-    use Git::Helpers qw( checkout_root );
+    use Git::Helpers qw( checkout_root remote_url);
     my $root = checkout_root();
+
+    my $remote_url = remote_url('upstream');
 
 =head2 checkout_root( $dir )
 
@@ -46,5 +53,15 @@ find the top level of the repository.
 
 This method will throw an exception if it cannot find a git repository at the
 directory provided.
+
+=head2 remote_url( $remote_name )
+
+Returns a URL for the upstream you've requested by name.  Defaults to 'origin'.
+
+    # defaults to 'origin'
+    my $remote_url = remote_url();
+
+    # get URL for upstream remote
+    my $remote_url = remote_url('upstream');
 
 =cut
