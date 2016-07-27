@@ -78,4 +78,14 @@ Returns a URL for the upstream you've requested by name.  Defaults to 'origin'.
     # get URL for upstream remote
     my $remote_url = remote_url('upstream');
 
+=head2 travis_url( $remote_name )
+
+Returns a L<travis-ci.org> URL for the upstream you've requested by name.  Defaults to 'origin'.
+
+    # get Travis URL for remote named "origin"
+    my $travis_url = travis_url();
+
+    # get Travis URL for remote named "upstream"
+    my $travis_url = travis_url('upstream');
+
 =cut
