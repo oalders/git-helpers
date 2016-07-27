@@ -6,8 +6,11 @@ package Git::Helpers;
 use Carp qw( croak );
 use File::pushd qw( pushd );
 use Git::Sub;
-use Sub::Exporter -setup => { exports => [ 'checkout_root', 'remote_url', ] };
-use Try::Tiny;
+use Sub::Exporter -setup =>
+    { exports => [ 'checkout_root', 'remote_url', 'travis_url', ] };
+use Try::Tiny qw( catch try );
+use URI ();
+use URI::FromHash qw( uri );
 
 sub checkout_root {
     my $dir = shift;
@@ -29,6 +32,17 @@ sub checkout_root {
 sub remote_url {
     my $remote = shift || 'origin';
     return git::remote( 'get-url', $remote );
+}
+
+sub travis_url {
+    my $remote_url = remote_url( shift );
+    $remote_url =~ s{\.git\z}{};
+    my $url = URI->new($remote_url);
+    return uri(
+        scheme => 'https',
+        host => 'travis-ci.org',
+        path => $url->path,
+    );
 }
 
 1;
