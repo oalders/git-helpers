@@ -25,7 +25,10 @@ my $r = test_repository();
     my $remote_url = 'git@github.com:oalders/git-helpers.git';
     git::remote( 'add', 'origin', $remote_url );
     is( remote_url(), $remote_url, 'remote_url is ' . $remote_url );
-    is( travis_url(), 'https://travis-ci.org/oalders/git-helpers', 'travis_url' );
+    is(
+        travis_url(), 'https://travis-ci.org/oalders/git-helpers',
+        'travis_url'
+    );
 }
 
 {

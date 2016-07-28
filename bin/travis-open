@@ -1,0 +1,26 @@
+#!/usr/bin/env perl
+
+# ABSTRACT: Open a browser window with the Travis-CI URL of the repository which you are currently inside of
+# PODNAME: travis-open
+
+use strict;
+use warnings;
+
+use Browser::Open qw( open_browser );
+use Git::Helpers qw( travis_url );
+
+open_browser( travis_url( shift @ARGV ));
+exit;
+
+__END__
+=pod
+
+=head1 SYNOPSIS
+
+    # open Travis-CI URL of "origin" in your default browser
+    gh-open
+
+    # open Travis-CI of "upstream" remote in your default browser
+    gh-open upstream
+
+=cut

@@ -1,0 +1,26 @@
+#!/usr/bin/env perl
+
+# ABSTRACT: Open a browser window with the GitHub URL of the repository which you are currently inside of
+# PODNAME: gh-open
+
+use strict;
+use warnings;
+
+use Browser::Open qw( open_browser );
+use Git::Helpers qw( https_remote_url );
+
+open_browser( https_remote_url( shift @ARGV ));
+exit;
+
+__END__
+=pod
+
+=head1 SYNOPSIS
+
+    # open repo for "origin" on GitHub using your default browser
+    gh-open
+
+    # open repo for "upstream" on GitHub using your default browser
+    gh-open upstream
+
+=cut
