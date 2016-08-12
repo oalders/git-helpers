@@ -11,8 +11,9 @@ use Sub::Exporter -setup => { exports =>
 };
 use Try::Tiny qw( catch try );
 use URI ();
-use URI::Heuristic qw(uf_uristr);
 use URI::FromHash qw( uri );
+use URI::Heuristic qw(uf_uristr);
+use URI::git ();
 
 sub checkout_root {
     my $dir = shift;

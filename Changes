@@ -1,6 +1,7 @@
 Revision history for Git-Helpers
 
 {{$NEXT}}
+    - Adds URI::git to deps.
 
 0.000005  2016-07-27 22:40:25-04:00 America/Toronto
     - Adds a remote_url() helper.

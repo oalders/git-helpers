@@ -7,6 +7,7 @@ requires "Try::Tiny" => "0";
 requires "URI" => "0";
 requires "URI::FromHash" => "0";
 requires "URI::Heuristic" => "0";
+requires "URI::git" => "0";
 requires "perl" => "5.006";
 requires "strict" => "0";
 requires "warnings" => "0";
