@@ -8,7 +8,7 @@ perl:
   - "5.12"
   - "5.10"
 script:
-  - "prove -lr t"
+  - "prove -lvr t"
 notifications:
   email:
     recipients:
