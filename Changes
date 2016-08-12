@@ -1,6 +1,8 @@
 Revision history for Git-Helpers
 
 {{$NEXT}}
+
+0.000006  2016-08-12 00:02:57-04:00 America/Toronto
     - Adds URI::git to deps.
     - skip remote_url() tests if Git version less than 2.7
 
