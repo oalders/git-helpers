@@ -3,6 +3,7 @@ use warnings;
 
 use File::Temp qw( tempdir );
 use Git::Helpers qw( checkout_root remote_url travis_url );
+use Git::Version ();
 use Test::Fatal;
 use Test::Git 1.313;
 use Test::More;
@@ -22,13 +23,19 @@ my $r = test_repository();
     my $root = checkout_root;
     ok( $root, "got root $root" );
     is( $root, $r->work_tree, 'root matches work_tree' );
-    my $remote_url = 'git@github.com:oalders/git-helpers.git';
-    git::remote( 'add', 'origin', $remote_url );
-    is( remote_url(), $remote_url, 'remote_url is ' . $remote_url );
-    is(
-        travis_url(), 'https://travis-ci.org/oalders/git-helpers',
-        'travis_url'
-    );
+
+    my $v = Git::Version->new(`git --version`);
+
+SKIP: {
+        skip "$v is lower than 2.7", 2, unless $v ge 2.7;
+        my $remote_url = 'git@github.com:oalders/git-helpers.git';
+        git::remote( 'add', 'origin', $remote_url );
+        is( remote_url(), $remote_url, 'remote_url is ' . $remote_url );
+        is(
+            travis_url(), 'https://travis-ci.org/oalders/git-helpers',
+            'travis_url'
+        );
+    }
 }
 
 {
