@@ -7,9 +7,13 @@ use strict;
 use warnings;
 
 use Browser::Open qw( open_browser );
+use Getopt::Long;
 use Git::Helpers qw( https_remote_url );
 
-open_browser( https_remote_url( shift @ARGV ));
+my $branch;
+GetOptions ( 'branch' => \$branch );
+
+open_browser( https_remote_url( shift @ARGV, $branch ));
 exit;
 
 __END__

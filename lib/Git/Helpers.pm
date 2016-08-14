@@ -34,6 +34,7 @@ sub checkout_root {
 
 sub https_remote_url {
     my $remote_url = remote_url(shift);
+    my $branch     = shift;
 
     # remove trailing .git
     $remote_url =~ s{\.git\z}{};
@@ -43,6 +44,10 @@ sub https_remote_url {
 
     # remove : from git@github.com:username/repo.git
     $remote_url =~ s{(\w):(\w)}{$1/$2};
+
+    if ($branch) {
+        $remote_url .= '/tree/' . git::rev_parse( '--abbrev-ref', 'HEAD' );
+    }
 
     my $uri = URI->new( uf_uristr($remote_url) );
     $uri->scheme('https');
