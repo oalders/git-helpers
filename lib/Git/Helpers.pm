@@ -107,7 +107,7 @@ Defaults to using C<origin> as the remote if none is supplied.
 
 =head2 remote_url( $remote_name )
 
-Returns a URL for the upstream you've requested by name.  Defaults to 'origin'.
+Returns a URL for the remote you've requested by name.  Defaults to 'origin'.
 Provides you with the exact URL which git returns. Nothing is fixed up for you.
 
     # defaults to 'origin'
@@ -121,7 +121,8 @@ Provides you with the exact URL which git returns. Nothing is fixed up for you.
 
 =head2 travis_url( $remote_name )
 
-Returns a L<travis-ci.org> URL for the upstream you've requested by name.  Defaults to 'origin'.
+Returns a L<travis-ci.org> URL for the remote you've requested by name.
+Defaults to 'origin'.
 
     # get Travis URL for remote named "origin"
     my $origin_travis_url = travis_url();
