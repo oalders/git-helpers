@@ -1,6 +1,7 @@
 requires "Browser::Open" => "0";
 requires "Carp" => "0";
 requires "File::pushd" => "0";
+requires "Getopt::Long" => "0";
 requires "Git::Sub" => "0";
 requires "Sub::Exporter" => "0";
 requires "Try::Tiny" => "0";
