@@ -6,8 +6,11 @@ package Git::Helpers;
 use Carp qw( croak );
 use File::pushd qw( pushd );
 use Git::Sub;
-use Sub::Exporter -setup => { exports =>
-        [ 'checkout_root', 'https_remote_url', 'remote_url', 'travis_url', ]
+use Sub::Exporter -setup => {
+    exports => [
+        'checkout_root', 'current_branch_name', 'https_remote_url',
+        'remote_url',    'travis_url',
+    ]
 };
 use Try::Tiny qw( catch try );
 use URI ();
@@ -30,6 +33,12 @@ sub checkout_root {
         croak "Error in $dir $_";
     };
     return $root;
+}
+
+# Works as of 1.6.3:1
+# http://stackoverflow.com/questions/1417957/show-just-the-current-branch-in-git
+sub current_branch_name {
+    return git::rev_parse( '--abbrev-ref', 'HEAD' );
 }
 
 sub https_remote_url {
@@ -93,6 +102,10 @@ find the top level of the repository.
 
 This method will throw an exception if it cannot find a git repository at the
 directory provided.
+
+=head2 current_branch
+
+Returns the name of the current branch.
 
 =head2 https_remote_url( $remote_name )
 

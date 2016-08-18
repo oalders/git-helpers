@@ -2,8 +2,11 @@ use strict;
 use warnings;
 
 use File::Temp qw( tempdir );
-use Git::Helpers qw( checkout_root remote_url travis_url );
+use File::Touch qw( touch );
+use Git::Helpers
+    qw( checkout_root current_branch_name remote_url travis_url );
 use Git::Version ();
+use Git::Sub;
 use Test::Fatal;
 use Test::Git 1.313;
 use Test::More;
@@ -36,6 +39,15 @@ SKIP: {
             'travis_url'
         );
     }
+
+    # Do some bootstrapping so that we have a branch with an arbitrary name.
+    my $file = 'README';
+    touch($file);
+    git::add($file);
+    git::commit( '-m', $file );
+    git::checkout( '-b', $file );
+
+    is( current_branch_name(), $file, 'current branch is ' . $file );
 }
 
 {
