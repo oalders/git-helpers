@@ -15,6 +15,7 @@ requires "warnings" => "0";
 
 on 'test' => sub {
   requires "File::Temp" => "0";
+  requires "File::Touch" => "0";
   requires "Git::Version" => "0";
   requires "Test::Fatal" => "0";
   requires "Test::Git" => "1.313";

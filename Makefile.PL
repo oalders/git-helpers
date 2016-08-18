@@ -37,6 +37,7 @@ my %WriteMakefileArgs = (
   },
   "TEST_REQUIRES" => {
     "File::Temp" => 0,
+    "File::Touch" => 0,
     "Git::Version" => 0,
     "Test::Fatal" => 0,
     "Test::Git" => "1.313",
@@ -54,6 +55,7 @@ my %FallbackPrereqs = (
   "Browser::Open" => 0,
   "Carp" => 0,
   "File::Temp" => 0,
+  "File::Touch" => 0,
   "File::pushd" => 0,
   "Getopt::Long" => 0,
   "Git::Sub" => 0,

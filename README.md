@@ -27,6 +27,10 @@ find the top level of the repository.
 This method will throw an exception if it cannot find a git repository at the
 directory provided.
 
+## current\_branch
+
+Returns the name of the current branch.
+
 ## https\_remote\_url( $remote\_name )
 
 This is a browser-friendly URL for the remote, fixed up in such a way that
@@ -40,7 +44,7 @@ Defaults to using `origin` as the remote if none is supplied.
 
 ## remote\_url( $remote\_name )
 
-Returns a URL for the upstream you've requested by name.  Defaults to 'origin'.
+Returns a URL for the remote you've requested by name.  Defaults to 'origin'.
 Provides you with the exact URL which git returns. Nothing is fixed up for you.
 
     # defaults to 'origin'
@@ -54,7 +58,8 @@ Provides you with the exact URL which git returns. Nothing is fixed up for you.
 
 ## travis\_url( $remote\_name )
 
-Returns a [travis-ci.org](https://metacpan.org/pod/travis-ci.org) URL for the upstream you've requested by name.  Defaults to 'origin'.
+Returns a [travis-ci.org](https://metacpan.org/pod/travis-ci.org) URL for the remote you've requested by name.
+Defaults to 'origin'.
 
     # get Travis URL for remote named "origin"
     my $origin_travis_url = travis_url();
