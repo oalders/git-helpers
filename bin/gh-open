@@ -27,4 +27,8 @@ __END__
     # open repo for "upstream" on GitHub using your default browser
     gh-open upstream
 
+    # open repo to your current branch
+    gh-open -b
+    gh-open -b upstream
+
 =cut

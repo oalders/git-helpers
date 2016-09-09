@@ -107,7 +107,7 @@ directory provided.
 
 Returns the name of the current branch.
 
-=head2 https_remote_url( $remote_name )
+=head2 https_remote_url( $remote_name, $use_current_branch )
 
 This is a browser-friendly URL for the remote, fixed up in such a way that
 GitHub (hopefully) doesn't need to redirect your URL.
@@ -117,6 +117,10 @@ Turns git@github.com:oalders/git-helpers.git into https://github.com/oalders/git
 Turns https://github.com/oalders/git-helpers.git into https://github.com/oalders/git-helpers
 
 Defaults to using C<origin> as the remote if none is supplied.
+
+Defaults to master branch, but can also display current branch.
+
+    my $current_branch_url = https_remote_url( 'origin', 1 );
 
 =head2 remote_url( $remote_name )
 
