@@ -1,7 +1,9 @@
 Revision history for Git-Helpers
 
 {{$NEXT}}
-    - Adds current_branch_name()
+    - Adds current_branch_name() function
+    - Adds gh-open -b arg, which opens the URL for your current branch (Kevin
+      Phair)
 
 0.000006  2016-08-12 00:02:57-04:00 America/Toronto
     - Adds URI::git to deps.
