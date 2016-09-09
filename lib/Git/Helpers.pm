@@ -55,7 +55,7 @@ sub https_remote_url {
     $remote_url =~ s{(\w):(\w)}{$1/$2};
 
     if ($branch) {
-        $remote_url .= '/tree/' . git::rev_parse( '--abbrev-ref', 'HEAD' );
+        $remote_url .= '/tree/' . current_branch_name();
     }
 
     my $uri = URI->new( uf_uristr($remote_url) );
