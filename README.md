@@ -6,7 +6,7 @@ Git::Helpers - Shortcuts for common Git commands
 
 # VERSION
 
-version 0.000006
+version 0.000007
 
 # SYNOPSIS
 
@@ -27,7 +27,7 @@ find the top level of the repository.
 This method will throw an exception if it cannot find a git repository at the
 directory provided.
 
-## current\_branch
+## current\_branch\_name
 
 Returns the name of the current branch.
 
@@ -58,7 +58,7 @@ Provides you with the exact URL which git returns. Nothing is fixed up for you.
     # https://github.com/oalders/git-helpers.git
 
     # get URL for upstream remote
-    my $remote_url = remote_url('upstream');
+    my $upstream_url = remote_url('upstream');
 
 ## travis\_url( $remote\_name )
 
