@@ -42,7 +42,7 @@ SKIP: {
 
     # Do some bootstrapping so that we have a branch with an arbitrary name.
     git::config( 'user.email', 'fdrebin@policesquad.org' );
-    git::config( 'user.name', 'Frank Drebin' );
+    git::config( 'user.name',  'Frank Drebin' );
 
     my $file = 'README';
     touch($file);
