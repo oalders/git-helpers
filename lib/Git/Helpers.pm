@@ -103,7 +103,7 @@ find the top level of the repository.
 This method will throw an exception if it cannot find a git repository at the
 directory provided.
 
-=head2 current_branch
+=head2 current_branch_name
 
 Returns the name of the current branch.
 
@@ -134,7 +134,7 @@ Provides you with the exact URL which git returns. Nothing is fixed up for you.
     # https://github.com/oalders/git-helpers.git
 
     # get URL for upstream remote
-    my $remote_url = remote_url('upstream');
+    my $upstream_url = remote_url('upstream');
 
 =head2 travis_url( $remote_name )
 
