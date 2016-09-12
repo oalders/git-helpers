@@ -31,12 +31,16 @@ my $r = test_repository();
 
 SKIP: {
         skip "$v is lower than 2.7", 2, unless $v ge 2.7;
-        my $remote_url = 'git@github.com:oalders/git-helpers.git';
+        my $remote_url  = 'git@github.com:oalders/git-helpers.git';
         my $remote_name = 'foobarbaz';
         git::remote( 'add', $remote_name, $remote_url );
-        is( remote_url($remote_name), $remote_url, 'remote_url is ' . $remote_url );
         is(
-            travis_url($remote_name), 'https://travis-ci.org/oalders/git-helpers',
+            remote_url($remote_name), $remote_url,
+            'remote_url is ' . $remote_url
+        );
+        is(
+            travis_url($remote_name),
+            'https://travis-ci.org/oalders/git-helpers',
             'travis_url'
         );
     }
