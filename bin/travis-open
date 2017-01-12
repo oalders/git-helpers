@@ -18,9 +18,9 @@ __END__
 =head1 SYNOPSIS
 
     # open Travis-CI URL of "origin" in your default browser
-    gh-open
+    travis-open
 
     # open Travis-CI of "upstream" remote in your default browser
-    gh-open upstream
+    travis-open upstream
 
 =cut
