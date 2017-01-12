@@ -1,6 +1,8 @@
 Revision history for Git-Helpers
 
 {{$NEXT}}
+
+0.000009  2017-01-12 16:28:17-05:00 America/Toronto
     - Fixes copy/paste typ on travis-open docs.
 
 0.000008  2016-09-12 18:26:01-04:00 America/Toronto
