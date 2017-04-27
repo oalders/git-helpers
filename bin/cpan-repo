@@ -5,7 +5,6 @@
 
 use strict;
 use warnings;
-use feature qw( say );
 
 use Browser::Open qw( open_browser );
 use Git::Helpers::CPAN ();
@@ -20,7 +19,7 @@ my $repo = $helper->repository;
 my $url = $repo->{web} || $repo->{url};
 
 unless ($url) {
-    say q{Couldn't find repo URL for } . $helper->release_name;
+    print q{Couldn't find repo URL for } . $helper->release_name;
     exit;
 }
 
