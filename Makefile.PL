@@ -14,6 +14,7 @@ my %WriteMakefileArgs = (
   },
   "DISTNAME" => "Git-Helpers",
   "EXE_FILES" => [
+    "bin/cpan-repo",
     "bin/gh-open",
     "bin/travis-open"
   ],
@@ -26,8 +27,11 @@ my %WriteMakefileArgs = (
     "File::pushd" => 0,
     "Getopt::Long" => 0,
     "Git::Sub" => 0,
+    "MetaCPAN::Client" => 0,
+    "Moo" => 0,
     "Sub::Exporter" => 0,
     "Try::Tiny" => 0,
+    "Types::Standard" => 0,
     "URI" => 0,
     "URI::FromHash" => 0,
     "URI::Heuristic" => 0,
@@ -36,15 +40,18 @@ my %WriteMakefileArgs = (
     "warnings" => 0
   },
   "TEST_REQUIRES" => {
+    "ExtUtils::MakeMaker" => 0,
+    "File::Spec" => 0,
     "File::Temp" => 0,
     "File::Touch" => 0,
     "Git::Version" => 0,
     "Test::Fatal" => 0,
     "Test::Git" => "1.313",
     "Test::More" => 0,
-    "Test::Requires::Git" => "1.005"
+    "Test::Requires::Git" => "1.005",
+    "Test::RequiresInternet" => 0
   },
-  "VERSION" => "0.000009",
+  "VERSION" => "0.000010",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -54,18 +61,24 @@ my %WriteMakefileArgs = (
 my %FallbackPrereqs = (
   "Browser::Open" => 0,
   "Carp" => 0,
+  "ExtUtils::MakeMaker" => 0,
+  "File::Spec" => 0,
   "File::Temp" => 0,
   "File::Touch" => 0,
   "File::pushd" => 0,
   "Getopt::Long" => 0,
   "Git::Sub" => 0,
   "Git::Version" => 0,
+  "MetaCPAN::Client" => 0,
+  "Moo" => 0,
   "Sub::Exporter" => 0,
   "Test::Fatal" => 0,
   "Test::Git" => "1.313",
   "Test::More" => 0,
   "Test::Requires::Git" => "1.005",
+  "Test::RequiresInternet" => 0,
   "Try::Tiny" => 0,
+  "Types::Standard" => 0,
   "URI" => 0,
   "URI::FromHash" => 0,
   "URI::Heuristic" => 0,

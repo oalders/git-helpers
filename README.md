@@ -6,7 +6,7 @@ Git::Helpers - Shortcuts for common Git commands
 
 # VERSION
 
-version 0.000009
+version 0.000010
 
 # SYNOPSIS
 
