@@ -1,6 +1,7 @@
 Revision history for Git-Helpers
 
 {{$NEXT}}
+    - Adds cpan-repo script
 
 0.000009  2017-01-12 16:28:17-05:00 America/Toronto
     - Fixes copy/paste typ on travis-open docs.
