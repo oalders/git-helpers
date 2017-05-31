@@ -4,6 +4,7 @@ use warnings;
 package Git::Helpers;
 
 use Carp qw( croak );
+use Capture::Tiny 'capture_stderr';
 use File::pushd qw( pushd );
 use Git::Sub;
 use Sub::Exporter -setup => {
@@ -21,17 +22,19 @@ use URI::git ();
 sub checkout_root {
     my $dir = shift;
 
-    my $new_dir;
+    my ($new_dir, $root);
     $new_dir = pushd($dir) if $dir;
+    $dir ||= '.';
 
-    my $root;
-    try {
-        $root = scalar git::rev_parse qw(--show-toplevel);
-    }
-    catch {
-        $dir ||= '.';
-        croak "Error in $dir $_";
-    };
+    # the exception thrown by rev-parse when we're not in a repo is not
+    # very helpful (see following), so just ditch it in favor of the error
+    # output.
+    #   "rev_parse error 128 at /home/maxmind/perl5/lib/perl5/Git/Helpers.pm line 30"
+
+    my $stderr = capture_stderr { try { $root = scalar git::rev_parse qw(--show-toplevel) } };
+    croak "Error in $dir: $stderr"
+        if $stderr;
+
     return $root;
 }
 
