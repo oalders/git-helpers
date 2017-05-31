@@ -22,7 +22,7 @@ use URI::git ();
 sub checkout_root {
     my $dir = shift;
 
-    my ($new_dir, $root);
+    my ( $new_dir, $root );
     $new_dir = pushd($dir) if $dir;
     $dir ||= '.';
 
@@ -31,7 +31,9 @@ sub checkout_root {
     # output.
     #   "rev_parse error 128 at /home/maxmind/perl5/lib/perl5/Git/Helpers.pm line 30"
 
-    my $stderr = capture_stderr { try { $root = scalar git::rev_parse qw(--show-toplevel) } };
+    my $stderr = capture_stderr {
+        try { $root = scalar git::rev_parse qw(--show-toplevel) }
+    };
     croak "Error in $dir: $stderr"
         if $stderr;
 
