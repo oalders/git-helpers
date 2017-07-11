@@ -1,0 +1,66 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use Capture::Tiny qw( capture );
+use Git::Sub;
+use Term::UI;
+use Term::ReadLine ();
+
+my $term = Term::ReadLine->new('brand');
+
+## no critic (ControlStructures::ProhibitMutatingListFunctions)
+
+# Don't include the branch we're currently on
+my @branches = map { s{\s+}{}g; $_; }
+    grep { !m{^\*} && !m{remotes} } git::branch( '--no-color', '--all' );
+
+## use critic
+
+my @reply = $term->get_reply(
+    choices => \@branches,
+    multi   => 1,
+    prompt  => 'Which branch(es) would you like to delete?',
+);
+
+for my $branch (@reply) {
+    my $which = $term->get_reply(
+        choices => [ 'local', 'local and remote' ],
+        prompt => 'Delete local only or local and remote?',
+    );
+
+    my @args = ($branch);
+    unpop @args, '--remotes' if $which eq 'local and remote';
+
+    if ( my $stderr = delete_branch(@args) ) {
+
+        if ( $stderr =~ m{not fully merged} ) {
+
+            my $prompt = <<"EOF";
+Branch $branch is not fully merged. Would you still like to delete it?",
+EOF
+
+            my $reply = $term->get_reply(
+                choices => [ 'Yes', 'No' ],
+                prompt  => $prompt,
+            );
+
+            if ( $reply eq 'Yes' ) {
+                my $stderr = delete_branch( '--force', @args );
+                print "$stderr\n" if $stderr;
+            }
+        }
+        else {
+            print "$stderr\n";
+        }
+    }
+}
+
+sub delete_branch {
+    my ( undef, $stderr ) = capture {
+        eval { git::branch( '--delete', @_ ) };
+    };
+
+    return $stderr;
+}
