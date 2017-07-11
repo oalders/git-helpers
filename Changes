@@ -1,6 +1,7 @@
 Revision history for Git-Helpers
 
 {{$NEXT}}
+    - Add delete-git-branches script
 
 0.000011  2017-05-31 10:11:30-04:00 America/Toronto
     - Capture STDERR in `checkout_root() (Chris Weyl)
