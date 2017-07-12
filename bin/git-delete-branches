@@ -5,6 +5,7 @@ use warnings;
 
 use Capture::Tiny qw( capture );
 use Git::Sub;
+use String::Trim qw( trim );
 use Term::UI;
 use Term::ReadLine ();
 
@@ -13,8 +14,8 @@ my $term = Term::ReadLine->new('brand');
 ## no critic (ControlStructures::ProhibitMutatingListFunctions)
 
 # Don't include the branch we're currently on
-my @branches = map { s{\s+}{}g; $_; }
-    grep { !m{^\*} && !m{remotes} } git::branch( '--no-color', '--all' );
+my @branches
+    = map { trim($_) } grep { !m{^\*} } git::branch( '--no-color', '--all' );
 
 ## use critic
 
@@ -25,42 +26,65 @@ my @reply = $term->get_reply(
 );
 
 for my $branch (@reply) {
-    my $which = $term->get_reply(
-        choices => [ 'local', 'local and remote' ],
-        prompt => 'Delete local only or local and remote?',
-    );
+    my @to_delete = ($branch);
 
-    my @args = ($branch);
-    unpop @args, '--remotes' if $which eq 'local and remote';
+    #if ( my @remotes = remotes($branch) ) {
+        #@to_delete = $term->get_reply(
+            #choices => [ $branch, @remotes ],
+            #multi   => 1,
+            #prompt  => 'Which branches would you like to delete?',
+        #);
 
-    if ( my $stderr = delete_branch(@args) ) {
+    #}
+    use feature qw( say );
 
-        if ( $stderr =~ m{not fully merged} ) {
+    for my $name (@to_delete) {
+        say $name;
+        my $is_remote = $name =~ s{\Aremotes/}{};
+        say $name;
+        say $is_remote;
 
-            my $prompt = <<"EOF";
+        if ( my $stderr
+            = delete_branch( $is_remote ? ('--remotes') : (), $name ) )
+        {
+
+            if ( $stderr =~ m{not fully merged} ) {
+
+                my $prompt = <<"EOF";
 Branch $branch is not fully merged. Would you still like to delete it?",
 EOF
 
-            my $reply = $term->get_reply(
-                choices => [ 'Yes', 'No' ],
-                prompt  => $prompt,
-            );
+                my $reply = $term->get_reply(
+                    choices => [ 'Yes', 'No' ],
+                    prompt  => $prompt,
+                );
 
-            if ( $reply eq 'Yes' ) {
-                my $stderr = delete_branch( '--force', @args );
-                print "$stderr\n" if $stderr;
+                if ( $reply eq 'Yes' ) {
+                    my $stderr = delete_branch( '--force', $name );
+                    print "$stderr\n" if $stderr;
+                }
             }
-        }
-        else {
-            print "$stderr\n";
+            else {
+                print "$stderr\n";
+            }
         }
     }
 }
 
 sub delete_branch {
+    use DDP;
+    my @args = @_;
+    unshift @args, '--delete';
+    p @args;
     my ( undef, $stderr ) = capture {
-        eval { git::branch( '--delete', @_ ) };
+        eval { git::branch(@args) };
     };
 
     return $stderr;
+}
+
+sub remotes {
+    my $branch = shift;
+    my @remotes = map { trim($_) } git::branch( '-r', '--contains', $branch );
+    return @remotes;
 }
