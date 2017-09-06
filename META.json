@@ -49,7 +49,11 @@
             "Git::Sub" : "0",
             "MetaCPAN::Client" : "0",
             "Moo" : "0",
+            "MooX::Options" : "0",
+            "String::Trim" : "0",
             "Sub::Exporter" : "0",
+            "Term::ReadLine" : "0",
+            "Term::UI" : "0",
             "Try::Tiny" : "0",
             "Types::Standard" : "0",
             "URI" : "0",
@@ -92,7 +96,7 @@
          "web" : "https://github.com/oalders/git-helpers"
       }
    },
-   "version" : "0.000012",
+   "version" : "0.000013",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.026000"
@@ -178,11 +182,6 @@
          {
             "class" : "Dist::Zilla::Plugin::Manifest",
             "name" : "@Author::OALDERS/Manifest",
-            "version" : "6.009"
-         },
-         {
-            "class" : "Dist::Zilla::Plugin::ManifestSkip",
-            "name" : "@Author::OALDERS/ManifestSkip",
             "version" : "6.009"
          },
          {
@@ -536,7 +535,7 @@
                   "branch" : null,
                   "changelog" : "Changes",
                   "signed" : 0,
-                  "tag" : "v0.000012",
+                  "tag" : "v0.000013",
                   "tag_format" : "v%v",
                   "tag_message" : "v%v"
                },
