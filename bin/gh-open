@@ -1,4 +1,4 @@
-#!/usr/bin/env perl
+#!perl
 
 # ABSTRACT: Open a browser window with the GitHub URL of the repository which you are currently inside of
 # PODNAME: gh-open
