@@ -70,7 +70,20 @@ sub https_remote_url {
 
 sub remote_url {
     my $remote = shift || 'origin';
-    return git::remote( 'get-url', $remote );
+    my $url;
+    my $stderr = capture_stderr {
+        try {
+            $url = git::remote( 'get-url', $remote );
+        }
+
+        catch {
+            try {
+                $url = git::config( '--get', "remote.$remote.url" );
+            };
+        }
+    };
+
+    return $url;
 }
 
 sub travis_url {
