@@ -1,5 +1,7 @@
 Revision history for Git-Helpers
 
+{{$NEXT}}
+
 0.000016  2018-12-17 20:46:07Z
     - Add is_inside_work_tree() function. (GH#8) (Olaf Alders)
 
