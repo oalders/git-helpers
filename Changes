@@ -1,5 +1,7 @@
 Revision history for Git-Helpers
 
+{{$NEXT}}
+
 0.000017  2018-12-18 21:55:01Z
     - https_remote_url() now returns earlier if it will fail. (GH#9) (Olaf Alders)
 

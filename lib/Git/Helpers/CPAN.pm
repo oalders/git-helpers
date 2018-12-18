@@ -1,5 +1,5 @@
 package Git::Helpers::CPAN;
-our $VERSION = '0.000017';
+our $VERSION = '0.000018';
 use Moo;
 
 use MetaCPAN::Client ();
