@@ -52,7 +52,9 @@ sub current_branch_name {
 
 sub https_remote_url {
     my $remote_url = remote_url(shift);
-    my $branch     = shift;
+    return undef unless $remote_url;
+
+    my $branch = shift;
 
     # remove trailing .git
     $remote_url =~ s{\.git\z}{};
@@ -121,7 +123,7 @@ sub travis_url {
     use Git::Helpers qw(
         checkout_root
         current_branch_name
-        https_remote_Url
+        https_remote_url
         is_inside_work_tree
         remote_url
         travis_url
