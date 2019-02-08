@@ -12,6 +12,7 @@ use Sub::Exporter -setup => {
         'checkout_root',
         'current_branch_name',
         'https_remote_url',
+        'ignored_files',
         'is_inside_work_tree',
         'remote_url',
         'travis_url',
@@ -82,6 +83,23 @@ sub is_inside_work_tree {
         };
     };
     return $success;
+}
+
+sub ignored_files {
+    my $dir = shift || '.';
+    my @success;
+    my $stderr = capture_stderr {
+        try {
+            @success = git::ls_files(
+                $dir, '--ignored', '--exclude-standard',
+                '--others'
+            );
+        };
+    };
+
+    croak "Cannot find ignored files in dir: $stderr" if $stderr;
+
+    return \@success || [];
 }
 
 sub remote_url {
@@ -165,6 +183,13 @@ Defaults to using C<origin> as the remote if none is supplied.
 Defaults to master branch, but can also display current branch.
 
     my $current_branch_url = https_remote_url( 'origin', 1 );
+
+=head2 ignored_files( $dir )
+
+Returns an arrayref of files which exist in your checkout, but are ignored by
+Git.  Optionally accepts a directory as an argument.  Defaults to ".".
+
+Throws an exception if there has been an error running the command.
 
 =head2 is_inside_work_tree
 
