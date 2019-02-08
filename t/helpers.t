@@ -105,12 +105,26 @@ SKIP: {
 
         my $dir = 'empty-dir';
         path($dir)->mkpath;
-        cmp_deeply( ignored_files($dir), [], 'no ignored files in empty dir' );
-    };
+        cmp_deeply(
+            ignored_files($dir), [],
+            'no ignored files in empty dir'
+        );
 
-    chdir('..');
-    ok( !is_inside_work_tree(), 'not is_inside_work_tree' );
-}
+        like(
+            exception {
+                cmp_deeply(
+                    ignored_files('..'), [],
+                    'no ignored files in empty dir'
+                );
+            },
+            qr{Cannot find ignored files in dir},
+            'dies on check outside repository'
+        );
+
+        chdir('..');
+        ok( !is_inside_work_tree(), 'not is_inside_work_tree' );
+    }
+};
 
 {
     my $dir = tempdir( CLEANUP => 1 );

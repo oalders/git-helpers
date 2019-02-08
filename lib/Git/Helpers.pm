@@ -88,7 +88,7 @@ sub is_inside_work_tree {
 sub ignored_files {
     my $dir = shift || '.';
     my @success;
-    capture_stderr {
+    my $stderr = capture_stderr {
         try {
             @success = git::ls_files(
                 $dir, '--ignored', '--exclude-standard',
@@ -96,6 +96,9 @@ sub ignored_files {
             );
         };
     };
+
+    croak "Cannot find ignored files in dir: $stderr" if $stderr;
+
     return \@success || [];
 }
 
@@ -185,6 +188,8 @@ Defaults to master branch, but can also display current branch.
 
 Returns an arrayref of files which exist in your checkout, but are ignored by
 Git.  Optionally accepts a directory as an argument.  Defaults to ".".
+
+Throws an exception if there has been an error running the command.
 
 =head2 is_inside_work_tree
 
