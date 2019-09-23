@@ -5,15 +5,24 @@
 
 use strict;
 use warnings;
+use say;
 
 use Browser::Open qw( open_browser );
 use Getopt::Long qw( GetOptions );
 use Git::Helpers qw( https_remote_url );
 
 my $branch;
-GetOptions ( 'branch' => \$branch );
+my $echo;
+GetOptions( branch => \$branch, echo => \$echo );
 
-open_browser( https_remote_url( shift @ARGV, $branch ));
+# https_remote_url( $remote_name, $use_current_branch )
+my $url = https_remote_url( shift @ARGV, $branch );
+if ($echo) {
+    say $url;
+}
+else {
+    open_browser($url);
+}
 exit;
 
 __END__
@@ -30,5 +39,10 @@ __END__
     # open repo to your current branch
     gh-open -b
     gh-open -b upstream
+
+    # print (echo) URL to screen rather than opening it
+    gh-open -e
+    gh-open -e -b
+    gh-open -e -b upstream
 
 =cut

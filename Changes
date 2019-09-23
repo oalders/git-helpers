@@ -1,6 +1,7 @@
 Revision history for Git-Helpers
 
 {{$NEXT}}
+    - Add -e (echo) option to gh-open
 
 0.000018  2019-02-08 19:16:21Z
     - Add ignored_files() function (GH#10) (Olaf Alders)
