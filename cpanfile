@@ -7,6 +7,7 @@ requires "Git::Sub" => "0";
 requires "MetaCPAN::Client" => "0";
 requires "Moo" => "0";
 requires "MooX::Options" => "0";
+requires "Pod::Usage" => "0";
 requires "String::Trim" => "0";
 requires "Sub::Exporter" => "0";
 requires "Term::Choose" => "0";
@@ -17,6 +18,7 @@ requires "URI::FromHash" => "0";
 requires "URI::Heuristic" => "0";
 requires "URI::git" => "0";
 requires "perl" => "5.006";
+requires "say" => "0";
 requires "strict" => "0";
 requires "warnings" => "0";
 
