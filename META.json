@@ -73,7 +73,6 @@
             "URI::Heuristic" : "0",
             "URI::git" : "0",
             "perl" : "5.006",
-            "say" : "0",
             "strict" : "0",
             "warnings" : "0"
          }
@@ -111,7 +110,7 @@
          "web" : "https://github.com/oalders/git-helpers"
       }
    },
-   "version" : "0.000019",
+   "version" : "0.000020",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.026001"
@@ -643,7 +642,7 @@
                   "branch" : null,
                   "changelog" : "Changes",
                   "signed" : 0,
-                  "tag" : "v0.000019",
+                  "tag" : "v0.000020",
                   "tag_format" : "v%V",
                   "tag_message" : "v%V"
                },
@@ -787,6 +786,7 @@
    "x_contributors" : [
       "Chris Weyl <cweyl@alumni.drew.edu>",
       "Kevin Phair <phair.kevin@gmail.com>",
+      "Olaf Alders <olaf.alders@gmail.com>",
       "Olaf Alders <olaf@wundersolutions.com>",
       "Philippe Bruhat (BooK) <book@cpan.org>"
    ],

@@ -42,7 +42,6 @@ my %WriteMakefileArgs = (
     "URI::FromHash" => 0,
     "URI::Heuristic" => 0,
     "URI::git" => 0,
-    "say" => 0,
     "strict" => 0,
     "warnings" => 0
   },
@@ -99,7 +98,6 @@ my %FallbackPrereqs = (
   "URI::FromHash" => 0,
   "URI::Heuristic" => 0,
   "URI::git" => 0,
-  "say" => 0,
   "strict" => 0,
   "warnings" => 0
 );
