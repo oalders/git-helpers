@@ -5,7 +5,6 @@
 
 use strict;
 use warnings;
-use say;
 
 use Browser::Open qw( open_browser );
 use Getopt::Long qw( GetOptions );
@@ -28,14 +27,14 @@ if ($help) {
 }
 
 if ($version) {
-    say $Git::Helpers::VERSION;
+    print $Git::Helpers::VERSION, "\n";
     exit(0);
 }
 
 # https_remote_url( $remote_name, $use_current_branch )
 my $url = https_remote_url( shift @ARGV, $branch );
 if ($echo) {
-    say $url;
+    print $url, "\n";
 }
 else {
     open_browser($url);
