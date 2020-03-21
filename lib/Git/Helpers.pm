@@ -53,7 +53,7 @@ sub current_branch_name {
 
 sub https_remote_url {
     my $remote_url = remote_url(shift);
-    return undef unless $remote_url;
+    return unless $remote_url;
 
     my $branch = shift;
 
