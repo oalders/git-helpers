@@ -1,5 +1,7 @@
 Revision history for Git-Helpers
 
+{{$NEXT}}
+
 0.000021  2021-02-08 22:59:26Z
     - Open correct URL for repositories with git URLs (GH#14) (Olaf Alders)
 
