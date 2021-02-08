@@ -2,11 +2,9 @@
 
 Git::Helpers - Shortcuts for common Git commands
 
-[![Build Status](https://travis-ci.org/oalders/git-helpers.png?branch=master)](https://travis-ci.org/oalders/git-helpers)
-
 # VERSION
 
-version 0.000020
+version 0.000021
 
 # SYNOPSIS
 
