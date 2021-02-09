@@ -54,7 +54,6 @@ jobs:
       matrix:
         os: [ubuntu-20.04]
         perl-version:
-          - "5.8"
           - "5.10"
           #- "5.12" has been failing for years
           - "5.14"
@@ -94,7 +93,6 @@ jobs:
       matrix:
         os: [macos-latest]
         perl-version:
-          - "5.8"
           - "5.10"
           #- "5.12" has been failing for years
           - "5.14"
