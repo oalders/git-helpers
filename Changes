@@ -1,6 +1,7 @@
 Revision history for Git-Helpers
 
 {{$NEXT}}
+    - Drop support for travis-ci.org (GH#15) (Olaf Alders)
 
 0.000021  2021-02-08 22:59:26Z
     - Open correct URL for repositories with git URLs (GH#14) (Olaf Alders)
