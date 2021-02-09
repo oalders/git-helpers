@@ -1,6 +1,6 @@
 Revision history for Git-Helpers
 
-{{$NEXT}}
+1.000000  2021-02-09 20:39:56Z
     - Drop support for travis-ci.org (GH#15) (Olaf Alders)
 
 0.000021  2021-02-08 22:59:26Z
