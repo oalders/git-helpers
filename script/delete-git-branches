@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 package Options;
-our $VERSION = '0.000022';
+our $VERSION = '1.000001';
 use Moo;
 use MooX::Options;
 
