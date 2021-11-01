@@ -46,7 +46,7 @@ if ( $options->grep ) {
 my $term  = Term::Choose->new;
 my @reply = $term->choose(
     \@branches,
-    { layout => 3, prompt => 'Which branch(es) would you like to delete?', }
+    { layout => 2, prompt => 'Which branch(es) would you like to delete?', }
 );
 
 for my $branch (@reply) {
