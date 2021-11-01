@@ -2,7 +2,7 @@ package Git::Helpers::CPAN;
 our $VERSION = '1.000001';
 use Moo;
 
-use MetaCPAN::Client ();
+use MetaCPAN::Client 2.029000 ();
 use Try::Tiny qw( try );
 use Types::Standard qw( HashRef InstanceOf Maybe Str );
 
