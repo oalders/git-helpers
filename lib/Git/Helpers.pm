@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 package Git::Helpers;
-our $VERSION = '1.000001';
+our $VERSION = '1.000002';
 
 use Carp qw( croak );
 use Capture::Tiny qw( capture_stderr );

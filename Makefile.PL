@@ -57,7 +57,7 @@ my %WriteMakefileArgs = (
     "Test::Requires::Git" => "1.005",
     "Test::RequiresInternet" => 0
   },
-  "VERSION" => "1.000001",
+  "VERSION" => "1.000002",
   "test" => {
     "TESTS" => "t/*.t"
   }
