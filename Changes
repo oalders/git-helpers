@@ -1,6 +1,6 @@
 Revision history for Git-Helpers
 
-{{$NEXT}}
+1.000001  2021-11-02 01:31:05Z
     - Bump Term::Choose to latest version (1.743) (GH#18) (Olaf Alders)
     - Update use of Term::Choose in delete-git-branches (GH#16) (kuerbis)
     - Bump MetaCPAN::Client to latest version (2.029000) (GH#19) (Olaf Alders)
