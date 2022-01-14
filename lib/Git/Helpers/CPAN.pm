@@ -61,7 +61,7 @@ sub _build_release_name {
     };
 
     if ( !$release_name ) {
-        die sprintf( "Cannot find a module named %s", $self->name );
+        die sprintf( 'Cannot find a module named %s', $self->name );
     }
 
     return $release_name;
@@ -76,7 +76,7 @@ sub _build_latest_release {
     };
 
     if ( !$release ) {
-        die sprintf( "Cannot find a release named %s", $self->release_name );
+        die sprintf( 'Cannot find a release named %s', $self->release_name );
     }
     return $release;
 }
