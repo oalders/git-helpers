@@ -3,8 +3,8 @@ our $VERSION = '1.000002';
 use Moo;
 
 use MetaCPAN::Client 2.029000 ();
-use Try::Tiny qw( try );
-use Types::Standard qw( HashRef InstanceOf Maybe Str );
+use Try::Tiny                 qw( try );
+use Types::Standard           qw( HashRef InstanceOf Maybe Str );
 
 has _client => (
     is      => 'ro',

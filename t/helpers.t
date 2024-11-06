@@ -2,9 +2,9 @@ use strict;
 use warnings;
 
 use Capture::Tiny qw( capture_stderr );
-use File::Temp qw( tempdir );
-use File::Touch qw( touch );
-use Git::Helpers qw(
+use File::Temp    qw( tempdir );
+use File::Touch   qw( touch );
+use Git::Helpers  qw(
     checkout_root
     current_branch_name
     https_remote_url
@@ -14,9 +14,9 @@ use Git::Helpers qw(
 );
 use Git::Version ();
 use Git::Sub;
-use Path::Tiny qw( path );
-use Test::Deep qw( cmp_deeply );
-use Test::Fatal qw( exception );
+use Path::Tiny      qw( path );
+use Test::Deep      qw( cmp_deeply );
+use Test::Fatal     qw( exception );
 use Test::Git 1.313 qw( test_repository );
 use Test::More import => [qw( diag done_testing is like ok skip subtest )];
 use Test::Requires::Git 1.005;

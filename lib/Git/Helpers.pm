@@ -4,9 +4,9 @@ use warnings;
 package Git::Helpers;
 our $VERSION = '1.000002';
 
-use Carp qw( croak );
+use Carp          qw( croak );
 use Capture::Tiny qw( capture_stderr );
-use File::pushd qw( pushd );
+use File::pushd   qw( pushd );
 use Git::Sub;
 use Sub::Exporter -setup => {
     exports => [
@@ -18,10 +18,10 @@ use Sub::Exporter -setup => {
         'remote_url',
     ]
 };
-use Try::Tiny qw( catch try );
-use URI ();
+use Try::Tiny      qw( catch try );
+use URI            ();
 use URI::Heuristic qw( uf_uristr );
-use URI::git ();
+use URI::git       ();
 
 sub checkout_root {
     my $dir = shift;
