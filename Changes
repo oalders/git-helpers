@@ -1,6 +1,6 @@
 Revision history for Git-Helpers
 
-{{$NEXT}}
+1.000002  2026-11-10 18:43:37Z
     - Fix https_remote_url() for remotes with ports and local paths (GH#39)
       (Olaf Alders)
 

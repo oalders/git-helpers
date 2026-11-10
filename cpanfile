@@ -17,7 +17,6 @@ requires "Term::Choose" => "1.743";
 requires "Try::Tiny" => "0";
 requires "Types::Standard" => "0";
 requires "URI" => "0";
-requires "URI::Heuristic" => "0";
 requires "URI::git" => "0";
 requires "perl" => "v5.12.0";
 requires "strict" => "0";
