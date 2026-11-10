@@ -104,7 +104,7 @@ sub ignored_files {
 sub remote_url {
     my $remote = shift || 'origin';
     my $url;
-    my $stderr = capture_stderr {
+    capture_stderr {
         try {
             $url = git::remote( 'get-url', $remote );
         }
