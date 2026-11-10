@@ -1,0 +1,2 @@
+# $new_dir = File::pushd scope guard; a comment line needs an = to parse
+Git::Helpers = $new_dir

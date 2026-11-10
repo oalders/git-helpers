@@ -1,5 +1,4 @@
-.build
 /Git-Helpers*
 *.swp
+.build
 .test.requires.git.lock
-.tidyall.d
