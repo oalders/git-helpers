@@ -77,6 +77,54 @@ SKIP: {
 
     ok( is_inside_work_tree(), 'is_inside_work_tree' );
 
+    subtest 'https_remote_url remote forms' => sub {
+        my $expected_url = 'https://git.example.com/Test/x';
+        my @forms        = (
+            [ 'scp',  'git@git.example.com:Test/x.git', $expected_url ],
+            [ 'bare', 'git.example.com:Test/x.git',     $expected_url ],
+            [
+                'scp-absolute', 'git@git.example.com:/srv/git/x.git',
+                'https://git.example.com/srv/git/x'
+            ],
+            [
+                'https-port', 'https://git.example.com:8443/Test/x.git',
+                'https://git.example.com:8443/Test/x'
+            ],
+            [
+                'https-userinfo',
+                'https://user:secret@git.example.com/Test/x.git',
+                $expected_url
+            ],
+            [
+                'http-port', 'http://git.example.com:8080/Test/x.git',
+                'https://git.example.com:8080/Test/x'
+            ],
+            [
+                'ssh-port', 'ssh://git@git.example.com:2222/Test/x.git',
+                $expected_url
+            ],
+            [
+                'git-port', 'git://git.example.com:9418/Test/x.git',
+                $expected_url
+            ],
+            [ 'absolute-path', '/srv/git/x.git',        undef ],
+            [ 'relative-path', '../x.git',              undef ],
+            [ 'file-scheme',   'file:///srv/git/x.git', undef ],
+        );
+
+        for my $form (@forms) {
+            my ( $name, $url, $expected ) = @{$form};
+            git::remote( 'add', $name, $url );
+            is( https_remote_url($name), $expected, "$name: $url" );
+        }
+
+        is(
+            https_remote_url( 'https-port', 1 ),
+            "https://git.example.com:8443/Test/x/tree/$file",
+            'current branch is appended after the port'
+        );
+    };
+
     subtest 'ignored_files' => sub {
         my $gitignore = path('.gitignore');
         $gitignore->touch;

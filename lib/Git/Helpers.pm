@@ -18,10 +18,9 @@ use Sub::Exporter -setup => {
         'remote_url',
     ]
 };
-use Try::Tiny      qw( catch try );
-use URI            ();
-use URI::Heuristic qw( uf_uristr );
-use URI::git       ();
+use Try::Tiny qw( catch try );
+use URI       ();
+use URI::git  ();
 
 sub checkout_root {
     my $dir = shift;
@@ -59,18 +58,28 @@ sub https_remote_url {
     # remove trailing .git
     $remote_url =~ s{\.git\z}{};
 
-    # remove 'git@' from git@github.com:username/repo.git
-    $remote_url =~ s{\w*\@}{};
+    my $uri;
+    if ( $remote_url =~ m{\A[a-z][a-z0-9+.-]*://}i ) {
+        $uri = URI->new($remote_url);
+        return undef if $uri->scheme eq 'file';
 
-    # remove : from git@github.com:username/repo.git
-    $remote_url =~ s{(\w):(\w)}{$1/$2};
-
-    if ($branch) {
-        $remote_url .= '/tree/' . current_branch_name();
+        # an ssh or git port is not the web port
+        my $keep_port = $uri->scheme =~ m{\Ahttps?\z};
+        $uri->scheme('https');
+        $uri->userinfo(undef);
+        $uri->port(undef) unless $keep_port;
+    }
+    elsif ( $remote_url =~ m{\A(?:[^@/]+@)?([^/:]+):/*(.+)\z} ) {
+        $uri = URI->new("https://$1/$2");
+    }
+    else {
+        return undef;
     }
 
-    my $uri = URI->new( uf_uristr($remote_url) );
-    $uri->scheme('https');
+    if ($branch) {
+        $uri->path( $uri->path . '/tree/' . current_branch_name() );
+    }
+
     return $uri;
 }
 
@@ -164,6 +173,13 @@ GitHub (hopefully) doesn't need to redirect your URL.
 Turns git@github.com:oalders/git-helpers.git into https://github.com/oalders/git-helpers
 
 Turns https://github.com/oalders/git-helpers.git into https://github.com/oalders/git-helpers
+
+Turns https://git.example.com:8443/oalders/git-helpers.git into https://git.example.com:8443/oalders/git-helpers
+
+A port is kept for http and https remotes and dropped for others.
+
+Returns C<undef> for a local path or file:// remote, and for a remote which
+does not exist.
 
 Defaults to using C<origin> as the remote if none is supplied.
 
