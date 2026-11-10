@@ -84,11 +84,11 @@ jobs:
         with:
           name: build_dir
           path: .
-      - name: install deps using cpm
-        uses: perl-actions/install-with-cpm@v1
+      - uses: perl-actions/setup-cpm@v1
         with:
-          cpanfile: "cpanfile"
-          args: "--with-suggests --with-test --with-develop"
+          version: compat
+      - name: install deps using cpm
+        run: cpm install -g --cpanfile cpanfile --with-suggests --with-test --with-develop
       - run: prove -lrv t
         env:
           AUTHOR_TESTING: 1
@@ -128,11 +128,11 @@ jobs:
         with:
           name: build_dir
           path: .
-      - name: install deps using cpm
-        uses: perl-actions/install-with-cpm@v1
+      - uses: perl-actions/setup-cpm@v1
         with:
-          cpanfile: "cpanfile"
-          args: "--with-suggests --with-test --with-develop"
+          version: compat
+      - name: install deps using cpm
+        run: cpm install -g --cpanfile cpanfile --with-suggests --with-test
       - run: prove -lrv t
         env:
           AUTHOR_TESTING: 1
