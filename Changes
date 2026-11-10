@@ -1,6 +1,7 @@
 Revision history for Git-Helpers
 
 {{$NEXT}}
+    - Fix https_remote_url() for remotes with ports and local paths (GH#39) (Olaf Alders)
 
 1.000001  2021-11-02 01:31:05Z
     - Bump Term::Choose to latest version (1.743) (GH#18) (Olaf Alders)
