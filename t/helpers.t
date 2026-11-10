@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Capture::Tiny qw( capture_stderr );
+use Capture::Tiny qw( capture capture_stderr );
 use File::Temp    qw( tempdir );
 use File::Touch   qw( touch );
 use Git::Helpers  qw(
@@ -22,6 +22,9 @@ use Test::More import => [qw( diag done_testing is like ok skip subtest )];
 use Test::Requires::Git 1.005;
 
 test_requires_git();
+
+my $lib     = path('lib')->absolute;
+my $gh_open = path('script/gh-open')->absolute;
 
 my $r = test_repository();
 
@@ -122,6 +125,20 @@ SKIP: {
             https_remote_url( 'https-port', 1 ),
             "https://git.example.com:8443/Test/x/tree/$file",
             'current branch is appended after the port'
+        );
+
+        is(
+            https_remote_url( 'scp', 1 ),
+            "$expected_url/tree/$file",
+            'current branch is appended to an scp-style remote'
+        );
+
+        my ( undef, $gh_open_stderr ) = capture {
+            system( $^X, "-I$lib", $gh_open, '-e', 'absolute-path' );
+        };
+        like(
+            $gh_open_stderr, qr{No browsable URL},
+            'gh-open reports a remote with no browsable URL'
         );
     };
 

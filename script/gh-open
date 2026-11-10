@@ -33,6 +33,7 @@ if ($version) {
 
 # https_remote_url( $remote_name, $use_current_branch )
 my $url = https_remote_url( shift @ARGV, $branch );
+die "No browsable URL found for this remote\n" unless $url;
 if ($echo) {
     print $url, "\n";
 }
