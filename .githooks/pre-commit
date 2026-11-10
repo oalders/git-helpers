@@ -1,0 +1,48 @@
+#!/bin/sh
+# Pre-commit hook: enforce `precious lint` on staged files and
+# block direct commits to the default branch.
+#
+# Install (run once per clone):
+#   .githooks/pre-commit --init
+# which is shorthand for:
+#   git config core.hooksPath .githooks
+
+set -eu
+
+if [ "${1:-}" = "--init" ]; then
+    # Point git at the checked-in hooks directory with a RELATIVE path.
+    # git chdir's into each worktree's own root before running a hook, so a
+    # relative core.hooksPath resolves to .githooks inside whichever worktree
+    # is committing -- including a sandboxed linked worktree, where `.git` is
+    # a file and an absolute path would point outside the sandbox (or at
+    # another worktree's tree). core.hooksPath lives in the shared common
+    # .git config, so this one command covers every current and future
+    # worktree of this repo on this machine.
+    git config core.hooksPath .githooks
+    echo "Configured core.hooksPath=.githooks (covers every worktree of this repo)."
+    exit 0
+fi
+
+# Anchor to the working-tree root before doing anything else. Git exports
+# GIT_DIR into the hook environment, so `--show-toplevel` resolves the right
+# tree even when a wrapper invokes `git commit` from a directory outside (or
+# beside) the repo. Without this, `precious lint --staged` runs from that
+# foreign cwd, fails to find precious.toml, and the hook breaks.
+cd "$(git rev-parse --show-toplevel)"
+
+# Block direct commits to the default branch.
+default_branch="main"
+branch=$(git symbolic-ref --short HEAD 2>/dev/null || true)
+if [ "$branch" = "$default_branch" ]; then
+    echo "ERROR: Direct commits to '$default_branch' branch are not allowed." >&2
+    echo "Please create a feature branch instead:" >&2
+    echo "  git checkout -b feature/your-feature-name" >&2
+    exit 1
+fi
+
+# Run precious lint on staged files
+if ! precious lint -q --staged; then
+    echo "pre-commit hook failed: precious lint found issues with staged files" >&2
+    echo "Please run 'precious tidy -q --staged' and try again" >&2
+    exit 1
+fi
