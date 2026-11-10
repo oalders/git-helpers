@@ -18,6 +18,7 @@ jobs:
   build-job:
     name: Build distribution
     runs-on: ubuntu-24.04
+    timeout-minutes: 15
     container:
       image: perldocker/perl-tester:5.44
     steps:
@@ -37,6 +38,7 @@ jobs:
   coverage-job:
     needs: build-job
     runs-on: ubuntu-24.04
+    timeout-minutes: 15
     container:
       image: perldocker/perl-tester:5.44
     steps:
@@ -52,6 +54,7 @@ jobs:
   ubuntu-test-job:
     needs: build-job
     runs-on: "ubuntu-latest"
+    timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
@@ -96,6 +99,7 @@ jobs:
   macos-test-job:
     needs: ubuntu-test-job
     runs-on: "macos-latest"
+    timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
