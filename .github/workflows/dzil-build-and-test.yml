@@ -49,7 +49,7 @@ jobs:
     needs: build-job
     runs-on: "ubuntu-latest"
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         os: [ubuntu-24.04]
         perl-version:
@@ -91,7 +91,7 @@ jobs:
     needs: ubuntu-test-job
     runs-on: "macos-latest"
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         os: [macos-latest]
         perl-version:
