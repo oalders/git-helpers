@@ -1,5 +1,5 @@
 /Git-Helpers*
 *.swp
 .build
-.test.requires.git.lock
 .nono/
+.test.requires.git.lock
