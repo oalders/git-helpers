@@ -2,3 +2,4 @@
 *.swp
 .build
 .test.requires.git.lock
+.nono/
